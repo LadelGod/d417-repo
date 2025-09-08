@@ -17,9 +17,9 @@ def show_vlans(device) :
     return vlans
 
 device = {
-    "device_type": "EXOS",
+    "device_type": "extreme_exos",
     "host": "10.10.1.1",
     "username": "admin",
-    "password": "",
+    "password": ,
 }
-print(show_vlans())
+print(show_vlans(device))
