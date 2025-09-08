@@ -14,12 +14,12 @@ def show_vlans(device) :
             vlan_id = match.group(1)
             name = match.group(2)
             vlans.append((vlan_id, name))
-    return vlans
+    return output
 
 device = {
     "device_type": "extreme_exos",
-    "host": "10.10.1.1",
+    "host": "10.10.1.22",
     "username": "admin",
-    "password": ,
+    "password": "",
 }
 print(show_vlans(device))
