@@ -14,7 +14,7 @@ def show_vlans(device) :
             vlan_id = match.group(2)
             name = match.group(1)
             vlans = vlans.append((vlan_id, name))
-    return vlans
+    return match
 
 device = {
     "device_type": "extreme_exos",
