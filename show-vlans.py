@@ -9,12 +9,11 @@ def show_vlans(device) :
 
     vlans = []
     for line in output.splitlines() :
-        match = re.match(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$",line)
+        match = re.match(r"(10.10.\d{1,3}\.\d{1,3})",line)
         if match :
-            vlan_id = match.group(2)
-            name = match.group(1)
-            vlans = vlans.append((vlan_id, name))
-    return match
+            vlan_ip = match
+            vlans.append((vlan_ip))
+    return vlans
 
 device = {
     "device_type": "extreme_exos",
