@@ -9,7 +9,7 @@ def show_vlans(device) :
 
     vlans = []
     for line in output.splitlines() :
-        match = re.match(r"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$) (\s\\\d\\\s)",line)
+        match = re.match(r"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$)",line)
         if match :
             vlan_id = match.group(2)
             name = match.group(1)
