@@ -54,8 +54,8 @@
         name: DesktopUser1
         password: WGU123
         groups:
-        -Users
-        -Administrators
+          -Users
+          -Administrators
       when: ansible_facts['os_family'] == "Windows"
     - name: Add local admin 'DesktopUser2'
       ansible.windows.win_user:
