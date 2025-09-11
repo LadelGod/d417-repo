@@ -41,7 +41,7 @@ def show_vlans(switchList) :
         device = switchList[i]
         connection = ConnectHandler(**device)
         output = connection.send_command("show vlan")
-        print(output + '\n' + i + '\n')
+        print(output + '\n' + str(i) + '\n')
         if i == 0:
             with open('vlans-list.txt', 'w') as f:
                 try:
