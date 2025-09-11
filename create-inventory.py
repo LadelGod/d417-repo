@@ -4,7 +4,7 @@ config = configparser.ConfigParser()
 
 #This section adds the Linux hosts for ansible connections
 config.add_section('Linux_Hosts')
-config.set('Linux_Hosts', 'Test_Box_1', '10.10.1.56')
+config['Linux_Hosts'] = {'Test_box_1 ' 'ansible_host' : '10.10.1.56'}
 config.set('Linux_Hosts', 'Test_Box_2', '10.10.1.57')
 config.add_section('Linux_Hosts:vars')
 config['Linux_Hosts:vars'] = {'ansible_user': 'student', 'ansible_password': 'P@ssw0rd'}
