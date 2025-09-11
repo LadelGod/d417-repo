@@ -33,7 +33,7 @@ device5 = {
 }
 
 switchList = (device1, device2, device3, device4, device5)
-def create_vlans(switchList) : 
+def create_vlans() : 
     #Prints the starting configuration
     device = device1
     connection = ConnectHandler(**device)
@@ -53,3 +53,5 @@ def create_vlans(switchList) :
     print(newConfig)
 
     return "New VLANs have been created"
+
+print(create_vlans())
