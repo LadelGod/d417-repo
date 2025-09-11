@@ -47,3 +47,11 @@ def show_vlans(switchList) :
 
 
 print(show_vlans(switchList))
+
+with open('vlans-list.txt', 'w') as f:
+    try:
+        outputList.write(f)
+    except:
+        print('An error has occured.')
+    else:
+        print('The vlans-list.text file has been created successfully!')
