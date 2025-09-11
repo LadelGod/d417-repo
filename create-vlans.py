@@ -44,9 +44,11 @@ def create_vlans() :
     creation = connection.send_command("create vlan User_Network tag 10")
     print(creation)
 
-    #Adds ports to the User_network VLAN
-    addPorts = connection.send_command("configure vlan User_Network add ports 2-5 {untagged}")
+    #Adds ports & trunk to the User_network VLAN
+    addPorts = connection.send_command("configure vlan 10 add port 2-5 untagged")
+    addTrunk = connection.send_command("configure vlan 10 add port 1 tagged")
     print(addPorts)
+    print(addTrunk)
 
     #Prints the new configuration
     newConfig = connection.send_command("show vlan")
