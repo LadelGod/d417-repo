@@ -32,7 +32,7 @@ device5 = {
     "password": "",
 }
 
-switchList = [device1, device2, device3, device4, device5]
+switchList = (device1, device2, device3, device4, device5)
 
 def show_vlans(switchList) : 
 
@@ -41,7 +41,7 @@ def show_vlans(switchList) :
         device = switchList[i]
         connection = ConnectHandler(**device)
         output = connection.send_command("show vlan")
-        print(output)
+        print(output + '\n' + i + '\n')
         if i == 0:
             with open('vlans-list.txt', 'w') as f:
                 try:
@@ -59,7 +59,7 @@ def show_vlans(switchList) :
                 else:
                     continue
         connection.disconnect()
-        i += 1
+        i = i + 1
     return "All VLANs have been queried."
 
 
