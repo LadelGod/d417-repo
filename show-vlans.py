@@ -32,15 +32,15 @@ device5 = {
 }
 
 switchList = [device1, device2, device3, device4, device5]
-outputList = {}
+outputList = []
 def show_vlans(switchList) : 
-    outputList = {}
+    outputList = []
     i = 0       
     for switch in switchList :
         device = switchList[i]
         connection = ConnectHandler(**device)
         output = connection.send_command("show vlan")
-        outputList = outputList + {output}
+        outputList = outputList.append({output})
         connection.disconnect()
         i += 1
     return outputList
