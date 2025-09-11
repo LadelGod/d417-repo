@@ -1,4 +1,5 @@
 from netmiko import ConnectHandler
+import os
 
 device1 = {
     "device_type": "extreme_exos",
@@ -32,26 +33,34 @@ device5 = {
 }
 
 switchList = [device1, device2, device3, device4, device5]
-outputList = []
+
 def show_vlans(switchList) : 
-    outputList = []
+
     i = 0       
     for switch in switchList :
         device = switchList[i]
         connection = ConnectHandler(**device)
         output = connection.send_command("show vlan")
-        outputList.append({output})
+        print(output)
+        if i == 0:
+            with open('vlans-list.txt', 'w') as f:
+                try:
+                    f.write(output)
+                except:
+                    print('An error has occured while writing to vlans-list.txt. Moving on to next device.')
+                else:
+                    continue
+        else :
+            with open('vlans-list.txt', 'a') as f:
+                try:
+                    f.write(output)
+                except:
+                    print('An error has occured while writing to vlans-list.txt. Moving on to next device.')
+                else:
+                    continue
         connection.disconnect()
         i += 1
-    return outputList
+    return "All VLANs have been queried."
 
 
 print(show_vlans(switchList))
-
-with open('vlans-list.txt', 'w') as f:
-    try:
-        f.write(outputList)
-    except:
-        print('An error has occured.')
-    else:
-        print('The vlans-list.text file has been created successfully!')
