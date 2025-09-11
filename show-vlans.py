@@ -32,9 +32,9 @@ device5 = {
 }
 
 switchList = [device1, device2, device3, device4, device5]
-
 outputList = []
 def show_vlans(switchList) : 
+    outputList = []
     i = 0       
     for switch in switchList :
         device = switchList[i]
