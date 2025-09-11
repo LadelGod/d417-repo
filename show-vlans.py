@@ -36,7 +36,7 @@ switchList = (device1, device2, device3, device4, device5)
 #i = 0
 def show_vlans(switchList) : 
     for index, switch in enumerate(switchList) :
-        device = switchList(index)
+        device = switchList[index]
         connection = ConnectHandler(**device)
         output = connection.send_command("show vlan")
         print(output + '\n' + str(index) + '\n')
