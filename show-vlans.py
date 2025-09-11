@@ -40,7 +40,7 @@ def show_vlans(switchList) :
         device = switchList[i]
         connection = ConnectHandler(**device)
         output = connection.send_command("show vlan")
-        outputList = outputList.append({output})
+        outputList.append({output})
         connection.disconnect()
         i += 1
     return outputList
