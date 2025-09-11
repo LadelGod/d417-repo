@@ -47,7 +47,7 @@
       when: ansible_host=="10.10.1.56"
 -      
   name: Create 'DesktopUsers1-4' on the windows hosts
-  hosts: Windows Hosts
+  hosts: Windows_Hosts
   tasks:
     - name: Add local admin 'DesktopUser1'
       ansible.windows.win_user:
@@ -83,7 +83,7 @@
       when: ansible_facts['os_family'] == "Windows"
 -
   name: Add admin user on the switches
-  hosts: EXOS Hosts
+  hosts: EXOS_Hosts
   tasks:
     - name: create admin user on switches
       exos_config:
