@@ -50,7 +50,7 @@ print(show_vlans(switchList))
 
 with open('vlans-list.txt', 'w') as f:
     try:
-        f.write(outputList + '\n')
+        f.write(outputList)
     except:
         print('An error has occured.')
     else:
