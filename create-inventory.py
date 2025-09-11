@@ -2,32 +2,6 @@ import configparser
 
 config = configparser.ConfigParser()
 
-#This section adds the Linux hosts for ansible connections
-config.add_section('Linux_Hosts')
-config['Linux_Hosts'] = {'Test_box_1 ' 'ansible_host' : '10.10.1.56'}
-config.set('Linux_Hosts', 'Test_Box_2', '10.10.1.57')
-config.add_section('Linux_Hosts:vars')
-config['Linux_Hosts:vars'] = {'ansible_user': 'student', 'ansible_password': 'P@ssw0rd'}
-
-#This section adds the Windows hosts for ansible connections
-config.add_section('Windows_Hosts')
-config.set('Windows_Hosts', 'WindowsDesktop-1', '10.10.1.35')
-config.set('Windows_Hosts', 'WindowsDesktop-2', '10.10.1.36')
-config.set('Windows_Hosts', 'WindowsDesktop-3', '10.10.1.43')
-config.set('Windows_Hosts', 'WindowsDesktop-4', '10.10.1.29')
-config.add_section('Windows_Hosts:vars')
-config['Windows_Hosts:vars'] = {'ansible_port': '5985', 'ansible_user': 'Administrator', 'ansible_password': 'P@ssw0rd', 'ansible_connection': 'winrm'}
-
-#This section adds the switches for ansible connections
-config.add_section('EXOS_Hosts')
-config.set('EXOS_Hosts', 'Local_Switch', '10.10.1.24')
-config.set('EXOS_Hosts', 'User_Network', '10.10.1.22')
-config.set('EXOS_Hosts', 'ACCT_Network', '10.10.1.32')
-config.set('EXOS_Hosts', 'MGMT_Network', '10.10.1.31')
-config.set('EXOS_Hosts', 'IT_Network', '10.10.1.30')
-config.add_section('EXOS_Hosts:vars')
-config['EXOS_Hosts:vars'] = {'ansible_user': 'admin', 'ansible_connection': 'ansible.netcommon.network_cli', 'ansible_network_os': 'exos'}
-
 #This section adds the network switches
 config.add_section('Local_Switch')
 config['Local_Switch'] = {'name':'Local_Switch','ip':'10.10.1.24','RAM': '512MB','vCPU': '1','QEMU Binary': '/usr/bin/qemu-system-x86_64(v4.3.1)','Boot Priority': 'CD/DVD-ROM or HDD','On Close Behavior': 'Power off the VM','Console Type': 'telnet','# of Adapters': '13','Base MAC address': '0c:c0:5e:66:00:00','Adapter Type': 'Realtek 8139 Ethernet (rtl8139)','Replicate network connection states in QEMU': 'True'}

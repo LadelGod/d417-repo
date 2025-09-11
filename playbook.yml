@@ -1,89 +1,90 @@
-name: Create 'TestUser2' and a primary group of 'testgroup' and add the user to the group
-hosts: test_box_2
-become: true
-vars:
-  - ansible_sudo_pass: P@ssw0rd
-    gather_facts: true
+-
+  name: Create 'TestUser2' and a primary group of 'testgroup' and add the user to the group
+  hosts: test_box_2
+  become: true
+  vars:
+    - ansible_sudo_pass: P@ssw0rd
+      gather_facts: true
 
-tasks:
-  - name: Add a group to linux named testgroup
-    ansible.builtin.group:
-      name: testgroup
-      state: present
-      gid: 10
-  - name: Add a username TestUser2
-    ansible.builtin.user:
-      name: TestUser2
-      state: present
-      uid: 3
-      password: "{{'WGU123'|password_hash('sha512')}}"
-      group: testgroup
-      append: true
-    when: ansible_host=="10.10.1.57"
+  tasks:
+    - name: Add a group to linux named testgroup
+      ansible.builtin.group:
+        name: testgroup
+        state: present
+        gid: 10
+    - name: Add a username TestUser2
+      ansible.builtin.user:
+        name: TestUser2
+        state: present
+        uid: 3
+        password: "{{'WGU123'|password_hash('sha512')}}"
+        group: testgroup
+        append: true
+      when: ansible_host=="10.10.1.57"
 
+-
+  name: Create 'TestUser1' and a primary group of 'testgroup' and add the user to the group
+  hosts: test_box_1
+  become: true
+  vars:
+    - ansible_sudo_pass: P@ssw0rd
+      gather_facts: true
 
-name: Create 'TestUser1' and a primary group of 'testgroup' and add the user to the group
-hosts: test_box_1
-become: true
-vars:
-  - ansible_sudo_pass: P@ssw0rd
-    gather_facts: true
-
-tasks:
-  - name: Add a group to linux named testgroup
-    ansible.builtin.group:
-      name: testgroup
-      state: present
-      gid: 10
-  - name: Add a username TestUser1
-    ansible.builtin.user:
-      name: TestUser1
-      state: present
-      uid: 4
-      password: "{{'WGU123'|password_hash('sha512')}}"
-      group: testgroup
-      append: true
-    when: ansible_host=="10.10.1.56"
-
-name: Create 'DesktopUsers1-4' on the windows hosts
-hosts: Windows Hosts
-tasks:
-  - name: Add local admin 'DesktopUser1'
-    ansible.windows.win_user:
-      name: DesktopUser1
-      password: WGU123
-      groups:
+  tasks:
+    - name: Add a group to linux named testgroup
+      ansible.builtin.group:
+        name: testgroup
+        state: present
+        gid: 10
+    - name: Add a username TestUser1
+      ansible.builtin.user:
+        name: TestUser1
+        state: present
+        uid: 4
+        password: "{{'WGU123'|password_hash('sha512')}}"
+        group: testgroup
+        append: true
+      when: ansible_host=="10.10.1.56"
+-      
+  name: Create 'DesktopUsers1-4' on the windows hosts
+  hosts: Windows Hosts
+  tasks:
+    - name: Add local admin 'DesktopUser1'
+      ansible.windows.win_user:
+        name: DesktopUser1
+        password: WGU123
+        groups:
         -Users
         -Administrators
-    when: ansible_facts['os_family'] == "Windows"
-  - name: Add local admin 'DesktopUser2'
-    ansible.windows.win_user:
-      name: DesktopUser2
-      password: WGU123
-      groups:
-        -Users
-        -Administrators
-    when: ansible_facts['os_family'] == "Windows"
-  - name: Add local admin 'DesktopUser3'
-    ansible.windows.win_user:
-      name: DesktopUser3
-      password: WGU123
-      groups:
-        -Users
-        -Administrators
-    when: ansible_facts['os_family'] == "Windows"
-  - name: Add local admin 'DesktopUser4'
-    ansible.windows.win_user:
-      name: DesktopUser4
-      password: WGU123
-      groups:
-        -Users
-        -Administrators
-    when: ansible_facts['os_family'] == "Windows"
-
-name: Add admin user on the switches
-hosts: EXOS Hosts
-tasks:
-  - name: create admin user on switches
-    exos_config:
-      lines: create account admin Local-Admin WGU123
+      when: ansible_facts['os_family'] == "Windows"
+    - name: Add local admin 'DesktopUser2'
+      ansible.windows.win_user:
+        name: DesktopUser2
+        password: WGU123
+        groups:
+          -Users
+          -Administrators
+      when: ansible_facts['os_family'] == "Windows"
+    - name: Add local admin 'DesktopUser3'
+      ansible.windows.win_user:
+        name: DesktopUser3
+        password: WGU123
+        groups:
+          -Users
+          -Administrators
+      when: ansible_facts['os_family'] == "Windows"
+    - name: Add local admin 'DesktopUser4'
+      ansible.windows.win_user:
+        name: DesktopUser4
+        password: WGU123
+        groups:
+          -Users
+          -Administrators
+      when: ansible_facts['os_family'] == "Windows"
+-
+  name: Add admin user on the switches
+  hosts: EXOS Hosts
+  tasks:
+    - name: create admin user on switches
+      exos_config:
+        lines: create account admin Local-Admin WGU123
