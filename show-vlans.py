@@ -33,10 +33,8 @@ device5 = {
 }
 
 switchList = (device1, device2, device3, device4, device5)
-
+i = 0
 def show_vlans(switchList) : 
-
-    i = 0       
     for switch in switchList :
         device = switchList[i]
         connection = ConnectHandler(**device)
